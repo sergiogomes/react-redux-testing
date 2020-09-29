@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import * as actions from "actions";
+import { saveComment } from "actions";
 
-const CommentBox = () => {
+export const CommentBox = ({ onSaveComment }) => {
   const [comment, setComment] = useState("");
 
   const handleChange = (event) => {
@@ -12,7 +12,7 @@ const CommentBox = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    actions.saveComment(comment);
+    onSaveComment(comment);
     setComment("");
   };
 
@@ -27,4 +27,8 @@ const CommentBox = () => {
   );
 };
 
-export default connect(null, actions)(CommentBox);
+const mapDispatchToProps = {
+  onSaveComment: saveComment,
+};
+
+export default connect(null, mapDispatchToProps)(CommentBox);
