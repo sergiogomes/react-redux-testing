@@ -1,12 +1,17 @@
 import React from "react";
 import { mount } from "enzyme";
 
+import ReduxProvider from "redux-provider";
 import CommentBox from "components/CommentBox";
 
 let wrapped;
 
 beforeEach(() => {
-  wrapped = mount(<CommentBox />);
+  wrapped = mount(
+    <ReduxProvider>
+      <CommentBox />
+    </ReduxProvider>
+  );
 });
 
 it("should have a text area and a button", () => {
