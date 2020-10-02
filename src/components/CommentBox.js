@@ -25,7 +25,9 @@ export const CommentBox = ({ onSaveComment, onFetchComments }) => {
           <button>Submit Comment</button>
         </div>
       </form>
-      <button onClick={onFetchComments}>Fetch Comments</button>
+      <button className="fetch-comments" onClick={onFetchComments}>
+        Fetch Comments
+      </button>
     </div>
   );
 };
