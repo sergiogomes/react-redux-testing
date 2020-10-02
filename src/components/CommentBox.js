@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { saveComment } from "actions";
+import { fetchComments, saveComment } from "actions";
 
-export const CommentBox = ({ onSaveComment }) => {
+export const CommentBox = ({ onSaveComment, onFetchComments }) => {
   const [comment, setComment] = useState("");
 
   const handleChange = (event) => {
@@ -17,18 +17,22 @@ export const CommentBox = ({ onSaveComment }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h4>Add a Comment</h4>
-      <textarea value={comment} onChange={handleChange} />
-      <div>
-        <button>Submit Comment</button>
-      </div>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <h4>Add a Comment</h4>
+        <textarea value={comment} onChange={handleChange} />
+        <div>
+          <button>Submit Comment</button>
+        </div>
+      </form>
+      <button onClick={onFetchComments}>Fetch Comments</button>
+    </div>
   );
 };
 
 const mapDispatchToProps = {
   onSaveComment: saveComment,
+  onFetchComments: fetchComments,
 };
 
 export default connect(null, mapDispatchToProps)(CommentBox);
