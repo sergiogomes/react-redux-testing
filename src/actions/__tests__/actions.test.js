@@ -1,5 +1,5 @@
-import { saveComment } from "actions";
-import { SAVE_COMMENT } from "actions/types";
+import { saveComment, fetchComments } from "actions";
+import { SAVE_COMMENT, FETCH_COMMENTS } from "actions/types";
 
 describe("saveComment", () => {
   it("should have the correct type", () => {
@@ -10,5 +10,12 @@ describe("saveComment", () => {
   it("should have the correct payload", () => {
     const action = saveComment("New Comment");
     expect(action.payload).toEqual("New Comment");
+  });
+});
+
+describe("fetchComments", () => {
+  it("should have the correct type", () => {
+    const action = fetchComments();
+    expect(action.type).toEqual(FETCH_COMMENTS);
   });
 });
