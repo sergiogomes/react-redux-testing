@@ -10,6 +10,7 @@ const renderComments = (comments) => {
 export const CommentList = ({ comments }) => {
   return (
     <div>
+      <h4>Comment List</h4>
       <ul>{renderComments(comments)}</ul>
     </div>
   );
