@@ -1,23 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import { fetchComments, saveComment } from "actions";
+import requireAuth from "components/requireAuth";
 
-export const CommentBox = ({
-  auth,
-  history,
-  onSaveComment,
-  onFetchComments,
-}) => {
+export const CommentBox = ({ onSaveComment, onFetchComments }) => {
   const [comment, setComment] = useState("");
-
-  useEffect(() => {
-    if (!auth) {
-      setTimeout(() => {
-        history.push("/");
-      }, 500);
-    }
-  }, [auth, history]);
 
   const handleChange = (event) => {
     setComment(event.target.value);
@@ -45,13 +33,9 @@ export const CommentBox = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  return { auth: state.auth };
-};
-
 const mapDispatchToProps = {
   onSaveComment: saveComment,
   onFetchComments: fetchComments,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentBox);
+export default connect(null, mapDispatchToProps)(requireAuth(CommentBox));
